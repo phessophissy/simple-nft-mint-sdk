@@ -1,4 +1,5 @@
-import {
+import tx from '@stacks/transactions';
+const {
     makeContractCall,
     broadcastTransaction,
     AnchorMode,
@@ -6,8 +7,10 @@ import {
     uintCV,
     principalCV,
     callReadOnlyFunction
-} from '@stacks/transactions';
-import { STACKS_MAINNET } from '@stacks/network';
+} = tx;
+
+import network from '@stacks/network';
+const { STACKS_MAINNET } = network;
 
 export const DEFAULT_CONTRACT_ADDRESS = 'SP31G2FZ5JN87BATZMP4ZRYE5F7WZQDNEXJ7G7X97';
 export const DEFAULT_CONTRACT_NAME = 'simple-nft-v4';

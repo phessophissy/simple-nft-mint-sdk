@@ -1,6 +1,6 @@
 {
   "name": "simple-nft-mint",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Professional SDK for the Simple NFT Mint contract on Stacks",
   "main": "index.js",
   "type": "module",
