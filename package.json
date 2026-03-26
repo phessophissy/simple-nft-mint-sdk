@@ -16,6 +16,14 @@
   ],
   "author": "phessophissy <adefesobi@yahoo.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phessophissy/simple-nft-mint-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phessophissy/simple-nft-mint-sdk/issues"
+  },
+  "homepage": "https://github.com/phessophissy/simple-nft-mint-sdk#readme",
   "engines": {
     "node": ">=20.0.0"
   },
