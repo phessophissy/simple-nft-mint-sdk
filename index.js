@@ -99,10 +99,16 @@ export class SimpleNFTMint {
     /**
      * Mint a new NFT
      * @param {string} senderKey Private key of the minter
-     * @param {number} [fee=10000] Transaction fee
+     * @param {number} [fee=10000] Transaction fee in microSTX
      * @returns {Promise<Object>} Broadcast response
      */
     async mint(senderKey, fee = 10000) {
+        if (!senderKey || typeof senderKey !== 'string' || senderKey.trim() === '') {
+            throw new TypeError('senderKey must be a non-empty hex string');
+        }
+        if (!Number.isInteger(fee) || fee < 0) {
+            throw new TypeError('fee must be a non-negative integer');
+        }
         const txOptions = {
             contractAddress: this.contractAddress,
             contractName: this.contractName,
@@ -128,6 +134,21 @@ export class SimpleNFTMint {
      * @param {number} [fee=10000]
      */
     async transfer(tokenId, senderAddress, recipientAddress, senderKey, fee = 10000) {
+        if (!Number.isInteger(tokenId) || tokenId < 1) {
+            throw new TypeError('tokenId must be a positive integer');
+        }
+        if (!senderAddress || typeof senderAddress !== 'string') {
+            throw new TypeError('senderAddress must be a non-empty string');
+        }
+        if (!recipientAddress || typeof recipientAddress !== 'string') {
+            throw new TypeError('recipientAddress must be a non-empty string');
+        }
+        if (!senderKey || typeof senderKey !== 'string' || senderKey.trim() === '') {
+            throw new TypeError('senderKey must be a non-empty hex string');
+        }
+        if (!Number.isInteger(fee) || fee < 0) {
+            throw new TypeError('fee must be a non-negative integer');
+        }
         const txOptions = {
             contractAddress: this.contractAddress,
             contractName: this.contractName,
