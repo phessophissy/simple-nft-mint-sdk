@@ -3,6 +3,9 @@
   "version": "1.0.2",
   "description": "Professional SDK for the Simple NFT Mint contract on Stacks",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,7 +35,6 @@
     "README.md"
   ],
   "dependencies": {
-    "@stacks/connect": "^8.2.6",
     "@stacks/network": "^7.3.1",
     "@stacks/transactions": "^7.4.0"
   }
