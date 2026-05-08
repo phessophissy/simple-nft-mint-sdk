@@ -69,3 +69,14 @@ const result = await sdk.transfer(
 ## License
 
 MIT
+
+## API Reference
+
+| Method | Arguments | Returns | Description |
+|---|---|---|---|
+| `new SimpleNFTMint(opts?)` | `opts.contractAddress`, `opts.contractName`, `opts.network` | `SimpleNFTMint` | Initialize the SDK |
+| `getLastTokenId()` | — | `Promise<number>` | Last minted token ID |
+| `getTotalMinted()` | — | `Promise<number>` | Total NFTs minted so far |
+| `getMintPrice()` | — | `Promise<number>` | Current mint price in microSTX |
+| `mint(senderKey, fee?)` | `senderKey: string`, `fee?: number` (default `10000`) | `Promise<Object>` | Broadcast a mint transaction |
+| `transfer(tokenId, sender, recipient, senderKey, fee?)` | see above | `Promise<Object>` | Transfer an NFT to another address |
