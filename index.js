@@ -131,6 +131,18 @@ export class SimpleNFTMint {
      * @param {number} [fee=10000]
      */
     async transfer(tokenId, senderAddress, recipientAddress, senderKey, fee = 10000) {
+        if (!Number.isInteger(tokenId) || tokenId < 1) {
+            throw new TypeError('tokenId must be a positive integer');
+        }
+        if (!senderAddress || typeof senderAddress !== 'string') {
+            throw new TypeError('senderAddress must be a non-empty string');
+        }
+        if (!recipientAddress || typeof recipientAddress !== 'string') {
+            throw new TypeError('recipientAddress must be a non-empty string');
+        }
+        if (!senderKey || typeof senderKey !== 'string' || senderKey.trim() === '') {
+            throw new TypeError('senderKey must be a non-empty hex string');
+        }
         const txOptions = {
             contractAddress: this.contractAddress,
             contractName: this.contractName,
