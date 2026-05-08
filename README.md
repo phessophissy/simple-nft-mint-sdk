@@ -66,6 +66,25 @@ const result = await sdk.transfer(
 );
 ```
 
+### Error Handling
+
+All methods throw on invalid arguments and propagate network errors:
+
+```javascript
+try {
+    const result = await sdk.mint(privateKey);
+    if (result.error) {
+        // broadcast accepted but node returned an error body
+        console.error('Node error:', result.error);
+    } else {
+        console.log('Minted:', result.txid);
+    }
+} catch (err) {
+    // TypeError for bad args, or network/RPC failures
+    console.error('SDK error:', err.message);
+}
+```
+
 ## License
 
 MIT
