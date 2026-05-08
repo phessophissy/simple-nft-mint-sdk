@@ -103,6 +103,9 @@ export class SimpleNFTMint {
      * @returns {Promise<Object>} Broadcast response
      */
     async mint(senderKey, fee = 10000) {
+        if (!senderKey || typeof senderKey !== 'string' || senderKey.trim() === '') {
+            throw new TypeError('senderKey must be a non-empty hex string');
+        }
         const txOptions = {
             contractAddress: this.contractAddress,
             contractName: this.contractName,
