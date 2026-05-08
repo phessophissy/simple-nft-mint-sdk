@@ -22,7 +22,14 @@ npm install simple-nft-mint
 ```javascript
 import { SimpleNFTMint } from 'simple-nft-mint';
 
+// Mainnet (default)
 const sdk = new SimpleNFTMint();
+
+// Testnet
+import network from '@stacks/network';
+const { STACKS_TESTNET } = network;
+
+const testnetSdk = new SimpleNFTMint({ network: STACKS_TESTNET });
 ```
 
 ### Query Contract State
@@ -59,6 +66,36 @@ const result = await sdk.transfer(
 );
 ```
 
+### Error Handling
+
+All methods throw on invalid arguments and propagate network errors:
+
+```javascript
+try {
+    const result = await sdk.mint(privateKey);
+    if (result.error) {
+        // broadcast accepted but node returned an error body
+        console.error('Node error:', result.error);
+    } else {
+        console.log('Minted:', result.txid);
+    }
+} catch (err) {
+    // TypeError for bad args, or network/RPC failures
+    console.error('SDK error:', err.message);
+}
+```
+
 ## License
 
 MIT
+
+## API Reference
+
+| Method | Arguments | Returns | Description |
+|---|---|---|---|
+| `new SimpleNFTMint(opts?)` | `opts.contractAddress`, `opts.contractName`, `opts.network` | `SimpleNFTMint` | Initialize the SDK |
+| `getLastTokenId()` | — | `Promise<number>` | Last minted token ID |
+| `getTotalMinted()` | — | `Promise<number>` | Total NFTs minted so far |
+| `getMintPrice()` | — | `Promise<number>` | Current mint price in microSTX |
+| `mint(senderKey, fee?)` | `senderKey: string`, `fee?: number` (default `10000`) | `Promise<Object>` | Broadcast a mint transaction |
+| `transfer(tokenId, sender, recipient, senderKey, fee?)` | see above | `Promise<Object>` | Transfer an NFT to another address |
