@@ -22,7 +22,14 @@ npm install simple-nft-mint
 ```javascript
 import { SimpleNFTMint } from 'simple-nft-mint';
 
+// Mainnet (default)
 const sdk = new SimpleNFTMint();
+
+// Testnet
+import network from '@stacks/network';
+const { STACKS_TESTNET } = network;
+
+const testnetSdk = new SimpleNFTMint({ network: STACKS_TESTNET });
 ```
 
 ### Query Contract State
